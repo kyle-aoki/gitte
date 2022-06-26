@@ -1,6 +1,10 @@
 package main
 
 import (
+	"bytes"
+	"fmt"
+	"io"
+	"os"
 	"os/exec"
 	"strings"
 
@@ -15,8 +19,13 @@ func main() {
 }
 
 func c(command string) {
+	var stdBuffer bytes.Buffer
+	mw := io.MultiWriter(os.Stdout, &stdBuffer)
 	commandParts := strings.Split(command, " ")
 	cmd := exec.Command(commandParts[0], commandParts[1:]...)
+	cmd.Stdout = mw
+	cmd.Stderr = mw
 	err := cmd.Run()
 	uu.MustExec(err)
+	fmt.Println(stdBuffer.String())
 }
