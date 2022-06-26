@@ -26,5 +26,4 @@ func c(command string) {
 	cmd.Stderr = mw
 	err := cmd.Run()
 	uu.MustExec(err)
-	// fmt.Println(stdBuffer.String())
 }
