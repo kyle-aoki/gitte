@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"io"
 	"os"
 	"os/exec"
@@ -27,5 +26,5 @@ func c(command string) {
 	cmd.Stderr = mw
 	err := cmd.Run()
 	uu.MustExec(err)
-	fmt.Println(stdBuffer.String())
+	// fmt.Println(stdBuffer.String())
 }
